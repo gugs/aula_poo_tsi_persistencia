@@ -7,10 +7,18 @@ import java.util.Objects;
 public class Cliente implements Serializable{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String cpf;
 	String nome;
 	
 	private ArrayList<Conta> contas = new ArrayList<>();
+	
+	public Cliente(String cpf) {
+		this.cpf = cpf;
+	}
 	
 	public Cliente(String cpf, String nome) {
 		this.cpf = cpf;
@@ -54,5 +62,8 @@ public class Cliente implements Serializable{
 		return "Cliente [cpf=" + cpf + ", nome=" + nome + ", contas=" + contas + "]";
 	}
 	
-	
+
+	public ArrayList<Conta> getContas() {
+		return contas;
+	}
 }

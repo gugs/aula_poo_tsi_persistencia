@@ -6,6 +6,10 @@ import java.util.Objects;
 
 public class Conta implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String numero;
 	private float saldo;
 	Date dataAbertura;

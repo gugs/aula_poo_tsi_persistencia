@@ -26,6 +26,18 @@ public class PersistenciaArquivo {
 		}
 
 	}
+	
+	public Cliente buscarClienteCPF(String cpf) {
+		Cliente temp = new Cliente(cpf);
+		if(clientesCadastrados.contains(temp)) {
+			int index = clientesCadastrados.indexOf(temp);
+			temp = clientesCadastrados.get(index);
+			return temp;
+		}
+		else
+			return null;
+		
+	}
 
 	public void salvarArquivo() {
 		try {
@@ -42,14 +54,24 @@ public class PersistenciaArquivo {
 
 	public void carregarArquivo() {
 		try {
-			FileInputStream fis = new FileInputStream("dado");
+			FileInputStream fis = new FileInputStream("dados");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			clientesCadastrados = (ArrayList<Cliente>)ois.readObject();
 		} catch (IOException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}	
+	}
+	
+	public void atualizarCliente(Cliente c) {
+		if (clientesCadastrados.contains(c)) {
+			int index = clientesCadastrados.indexOf(c);
+			clientesCadastrados.set(index, c);
+			salvarArquivo();
 		}
-		
-		
+		else {
+			System.err.println("Cliente não encontrado.");
+		}
+
 	}
 }
